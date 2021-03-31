@@ -2,7 +2,7 @@
 /**
  * frankencookie.php
  *
- * Copyright (c) 2013 - 2015 "kento" Karim Rahimpur www.itthinx.com
+ * Copyright (c) 2013 - 2021 "kento" Karim Rahimpur www.itthinx.com
  *
  * This code is released under the GNU General Public License.
  * See COPYRIGHT.txt and LICENSE.txt.
@@ -19,12 +19,12 @@
  * @since frankencookie 1.0.0
  *
  * Plugin Name: FrankenCookie
- * Plugin URI: http://www.itthinx.com/plugins/frankencookie
+ * Plugin URI: https://www.itthinx.com/plugins/frankencookie
  * Description: FrankenCookie provides a widget that offers visitors an explanation about cookies being placed on their computer.
- * Version: 1.0.4
+ * Version: 1.1.0
  * Author: itthinx
- * Author URI: http://www.itthinx.com
- * Donate-Link: http://www.itthinx.com
+ * Author URI: https://www.itthinx.com
+ * Donate-Link: https://www.itthinx.com/shop/
  * License: GPLv3
  */
 define( 'FCOOK_CORE_VERSION',  '1.0.4' );

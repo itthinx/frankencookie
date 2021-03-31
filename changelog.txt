@@ -1,0 +1,20 @@
+== Frankencookie by itthinx - changelog.txt ==
+
+= 1.1.0 =
+* WordPress 5.7 compatible.
+
+= 1.0.4 =
+* Updated to use API functions for internal paths instead of WordPress constants.
+
+= 1.0.3 =
+* Changed the message and link CSS classes to make them more specific and avoid clashes with themes using the CSS class _hide_ to hide content.
+* Updated the minimum required WordPress version and tested up to version info.
+
+= 1.0.2 =
+* WordPress 3.8 compatibility checked
+
+= 1.0.1 =
+* WordPress 3.6 compatibility checked
+
+= 1.0.0 =
+* Initial release.
