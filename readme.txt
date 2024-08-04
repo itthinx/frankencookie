@@ -60,7 +60,7 @@ If you would like to contribute a translation, send a pull requests via the plug
 
 = I have a question, where do I ask? =
 
-You can leave a comment at the [FrankenCookie plugin page](https://www.itthinx.com/plugins/frankencookie/).
+You can leave a comment on the author's [page](https://www.itthinx.com/plugins/frankencookie/) for the plugin or the plugin's [support](https://wordpress.org/support/plugin/frankencookie/) forum.
 
 = Does it work with caching plugins? =
 
@@ -72,9 +72,9 @@ Those that don't will always see the message.
 
 = How can I style the output? =
 
-The widget can be styled quite easily using CSS rules.
+The output can be styled quite easily using CSS rules and filters provided by the renderer class.
 
-- the widget's CSS class is `frankencookie` 
+- the outer container uses the class `frankencookie-container`
 - the message is wrapped in a `div` with class `frankencookie-message`
 - the link to hide the message is also in a div with class `frankencookie-hide`
 
