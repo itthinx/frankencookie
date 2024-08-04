@@ -21,7 +21,7 @@
  * Plugin Name: FrankenCookie
  * Plugin URI: https://www.itthinx.com/plugins/frankencookie
  * Description: FrankenCookie provides a widget that offers visitors an explanation about cookies being placed on their computer.
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: itthinx
  * Author URI: https://www.itthinx.com
  * Donate-Link: https://www.itthinx.com/shop/
