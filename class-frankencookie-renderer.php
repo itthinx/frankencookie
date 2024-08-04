@@ -88,7 +88,13 @@ class FrankenCookie_Renderer {
 			$output .= '<div class="frankencookie-hide">';
 			$output .= sprintf(
 				'<a href="%s" rel="nofollow">%s</a>',
-				esc_url( wp_nonce_url( add_query_arg( 'frankencookie', 'set', remove_query_arg( 'frankencookie', $current_url ) ), 'frankencookie' ) ),
+				esc_url(
+					wp_nonce_url(
+						add_query_arg( 'frankencookie', 'set', remove_query_arg( 'frankencookie', $current_url ) ),
+						'frankencookie',
+						'_frankencookie'
+					)
+				),
 				wp_kses_post( $hide )
 			);
 			$output .= '<noscript>';

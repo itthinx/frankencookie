@@ -46,6 +46,9 @@ define( 'FCOOK_PLUGIN_DOMAIN', 'frankencookie' );
  */
 class FrankenCookie {
 
+	/**
+	 * @var int expiration period
+	 */
 	const TEN_YEARS = 315360000;
 
 	/**
@@ -59,17 +62,21 @@ class FrankenCookie {
 	}
 
 	/**
-	 * Sets the cookie when the message should be hidden and
-	 * redirects to clean up the URL.
+	 * Sets the cookie when the message should be hidden and redirects to clean up the URL.
 	 */
 	public static function wp_init() {
-		if ( isset( $_GET['_wpnonce'] ) ) {
-			if ( wp_verify_nonce( $_GET['_wpnonce'], 'frankencookie' ) ) {
-				setcookie( 'frankencookie', 1, time() + self::TEN_YEARS );
-				$current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-				$redirect_url = remove_query_arg( '_wpnonce', remove_query_arg( 'frankencookie', $current_url ) );
-				wp_redirect( $redirect_url );
-				exit;
+		$nonce = isset( $_GET['_frankencookie'] ) ? trim( sanitize_text_field( $_GET['_frankencookie'] ) ) : '';
+		if ( !empty( $nonce ) ) {
+			if ( wp_verify_nonce( $nonce, 'frankencookie' ) ) {
+				$expires = apply_filters( 'frankencookie_expires', time() + self::TEN_YEARS );
+				setcookie( 'frankencookie', 1, $expires );
+				if ( apply_filters( 'frankencookie_redirect', true ) ) {
+					$current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+					$redirect_url = remove_query_arg( '_frankencookie', remove_query_arg( 'frankencookie', $current_url ) );
+					$redirect_url = apply_filters( 'frankencookie_redirect_url', $redirect_url );
+					wp_redirect( $redirect_url );
+					exit;
+				}
 			}
 		}
 	}

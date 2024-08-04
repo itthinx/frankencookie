@@ -13,6 +13,9 @@
 * Added the frankencookie_print_inline_script filter.
 * Added the frankencookie_print_inline_style filter.
 * Added the frankencookie_render filter.
+* Added the frankencookie_redirect filter.
+* Added the frankencookie_redirect_url filter.
+* Added the frankencookie_expires filter.
 
 = 1.1.0 =
 * WordPress 5.7 compatible.
