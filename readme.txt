@@ -3,8 +3,8 @@ Contributors: itthinx
 Donate link: https://www.itthinx.com/shop/
 Tags: cookie, cookie law, bureaucracy, compliance, cookie directive
 Requires at least: 4.0.0
-Tested up to: 5.7
-Stable tag: 1.1.0
+Tested up to: 6.6
+Stable tag: 2.0.0
 License: GPLv3
 
 FrankenCookie provides a widget for Cookie Law compliance, that offers visitors an explanation about cookies being placed on their computer.
