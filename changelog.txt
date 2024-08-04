@@ -2,6 +2,14 @@
 
 = 2.0.0 =
 * WordPress 6.6 compatible.
+* Requires at least WordPress 6.0.
+* Requires at least PHP 7.4.
+* Added ABSPATH checks.
+* Added the [frankencookie] shortcode.
+* Replaced use of language domain constant with string literal.
+* Refactored code and unified rendering.
+* Added missing output escaping.
+* Revised the plugin information.
 
 = 1.1.0 =
 * WordPress 5.7 compatible.

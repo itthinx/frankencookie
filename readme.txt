@@ -2,31 +2,36 @@
 Contributors: itthinx
 Donate link: https://www.itthinx.com/shop/
 Tags: cookie, cookie law, bureaucracy, compliance, cookie directive
-Requires at least: 4.0.0
+Requires at least: 6.0
 Tested up to: 6.6
+Requires PHP: 7.4
 Stable tag: 2.0.0
 License: GPLv3
 
-FrankenCookie provides a widget for Cookie Law compliance, that offers visitors an explanation about cookies being placed on their computer.
+FrankenCookie reminds visitors of the use of cookies.
 
 == Description ==
 
-To make your site compliant with Cookie Laws, FrankenCookie provides a widget that offers visitors an explanation about cookies being placed on their computer.
-By default, it shows a message that informs the visitors about their implied acceptance when they continue to use your site.
+FrankenCookie reminds visitors of the use of cookies when they visit a site.
+It assumes implied consent and allows to hide the informational message by clicking a link.
+When the visitor clicks the link, a cookie `frankencookie` is created.
+When the cookie is found, the informational message is not shown.
 
-The widget provides a default text which can be customized. It also provides a link that visitors can click so that the widget does not appear again as long as the cookie used by FrankenCookie is found when the visitor browses the site.
+This functionality is provided via the `[frankencookie]` shortcode and a widget. If you would like to use it as a block, use the `Shortcode` block with the plugin's shortcode.
 
-The default message shown is:
+The plugin uses a default text, but you can provide your own alternative. It also provides a link that visitors can click, so that the message does not appear again as long as the cookie `frankencookie` is found when the visitor browses the site.
 
-_We use cookies to optimize your experience on our site and assume you're OK with that if you stay._ 
-
-Along with the message, a link saying
-
-_OK, hide this message._
-
-allows the visitor to hide the message on further page views and visits.
+The `[frankencookie]` shortcode takes the optional parameters `text` to provide an alternative message, `hide` to provide an alternative link message and `class` which allows to indicate additional CSS classes used on the wrapping container.
 
 _"Beware, for I am fearless and therefore powerful."_ - the monster
+
+### IMPORTANT ###
+
+There is *no guarantee* as to whether this plugin is compliant or not with your regional and legal requirements.
+
+Make sure to verify your legal requirements before relying on this or any similar solution to make your site compliant with Cookie Laws.
+
+As a site owner, it is your sole responsibility to deploy appropriate methods within your jurisdiction and for the jurisdictions from which your site can be accessed.
 
 ### Feedback ###
 
@@ -36,13 +41,13 @@ If you need help, have problems, want to leave feedback or want to provide const
 
 Please try to solve problems there before you rate this plugin or say it doesn't work. There goes a _lot_ of work into providing you with free quality plugins! Please appreciate that and help with your feedback. Thanks!
 
-#### Twitter ####
+#### X / Twitter ####
 
-[Follow @itthinx on Twitter](https://twitter.com/itthinx) for updates on this and other plugins.
+Follow [@itthinx](https://x.com/itthinx) for updates related to this and other plugins.
 
 ### Translations ###
 
-* If you would like to help translate the plugin, please get in touch at the [FrankenCookie plugin page](https://www.itthinx.com/plugins/frankencookie/).
+If you would like to contribute a translation, send a pull requests via the plugin's repository on GitHub: [FrankenCookie](https://github.com/itthinx/frankencookie) or use [Translating WordPress](https://translate.wordpress.org/projects/wp-plugins/frankencookie/).
 
 == Installation ==
 
@@ -65,12 +70,7 @@ As what is rendered does not change, it doesn't matter whether a caching mechani
 What changes is the behaviour based on the cookie. Of course this will only work if the visitor has Javascript enabled.
 Those that don't will always see the message.
 
-= How does this impact my site's performance? =
-
-Tests with [P3](https://wordpress.org/extend/plugins/p3-profiler/) show that the plugin's execution time is about 1-2% of WordPress' core.
-Well, still a small price to pay compared to the abysmal nonsense of *some* regulations.
-
-= How can I style the widget? =
+= How can I style the output? =
 
 The widget can be styled quite easily using CSS rules.
 
