@@ -2,7 +2,7 @@
 /**
  * frankencookie.php
  *
- * Copyright (c) 2013 - 2021 "kento" Karim Rahimpur www.itthinx.com
+ * Copyright (c) 2013 - 2024 "kento" Karim Rahimpur www.itthinx.com
  *
  * This code is released under the GNU General Public License.
  * See COPYRIGHT.txt and LICENSE.txt.
@@ -20,14 +20,22 @@
  *
  * Plugin Name: FrankenCookie
  * Plugin URI: https://www.itthinx.com/plugins/frankencookie
- * Description: FrankenCookie provides a widget that offers visitors an explanation about cookies being placed on their computer.
- * Version: 1.1.0
+ * Description: FrankenCookie reminds visitors of the use of cookies.
+ * Version: 2.0.0
+ * Requires at least: 6.0
+ * Requires PHP: 7.4
  * Author: itthinx
  * Author URI: https://www.itthinx.com
  * Donate-Link: https://www.itthinx.com/shop/
+ * Text Domain: frankencookie
  * License: GPLv3
  */
-define( 'FCOOK_CORE_VERSION',  '1.0.4' );
+
+if ( !defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+define( 'FCOOK_CORE_VERSION',  '2.0.0' );
 define( 'FCOOK_FILE',          __FILE__ );
 define( 'FCOOK_DIR',           untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 define( 'FCOOK_CORE_URL',      plugins_url( '/frankencookie' ) );
@@ -39,10 +47,47 @@ define( 'FCOOK_PLUGIN_DOMAIN', 'frankencookie' );
 class FrankenCookie {
 
 	/**
-	 * Load the widget stuff.
+	 * @var int expiration period
+	 */
+	const TEN_YEARS = 315360000;
+
+	/**
+	 * Load plugin files and hook on the init action.
 	 */
 	public static function init() {
-		require_once( FCOOK_DIR . '/class-frankencookie-widget.php' );
+		require_once FCOOK_DIR . '/class-frankencookie-renderer.php';
+		require_once FCOOK_DIR . '/class-frankencookie-widget.php';
+		require_once FCOOK_DIR . '/class-frankencookie-shortcode.php';
+		add_action( 'init', array( __CLASS__, 'wp_init' ) );
+	}
+
+	/**
+	 * Sets the cookie when the message should be hidden and redirects to clean up the URL.
+	 */
+	public static function wp_init() {
+		$nonce = isset( $_GET['_frankencookie'] ) ? trim( sanitize_text_field( $_GET['_frankencookie'] ) ) : '';
+		if ( !empty( $nonce ) ) {
+			if ( wp_verify_nonce( $nonce, 'frankencookie' ) ) {
+				$expires = apply_filters( 'frankencookie_expires', time() + self::TEN_YEARS );
+				setcookie( 'frankencookie', 1, $expires );
+				if ( apply_filters( 'frankencookie_redirect', true ) ) {
+					$current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+					$redirect_url = remove_query_arg( '_frankencookie', remove_query_arg( 'frankencookie', $current_url ) );
+					$redirect_url = apply_filters( 'frankencookie_redirect_url', $redirect_url );
+					wp_redirect( $redirect_url );
+					exit;
+				}
+			}
+		}
+	}
+
+	/**
+	 * Whether the 'frankencookie' cookie is there.
+	 *
+	 * @return boolean
+	 */
+	public static function has_cookie() {
+		return isset( $_COOKIE['frankencookie'] );
 	}
 }
 
