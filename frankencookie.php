@@ -52,6 +52,7 @@ class FrankenCookie {
 	 * Load plugin files and hook on the init action.
 	 */
 	public static function init() {
+		require_once FCOOK_DIR . '/class-frankencookie-renderer.php';
 		require_once FCOOK_DIR . '/class-frankencookie-widget.php';
 		require_once FCOOK_DIR . '/class-frankencookie-shortcode.php';
 		add_action( 'init', array( __CLASS__, 'wp_init' ) );

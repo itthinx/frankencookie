@@ -10,6 +10,9 @@
 * Refactored code and unified rendering.
 * Added missing output escaping.
 * Revised the plugin information.
+* Added the frankencookie_print_inline_script filter.
+* Added the frankencookie_print_inline_style filter.
+* Added the frankencookie_render filter.
 
 = 1.1.0 =
 * WordPress 5.7 compatible.

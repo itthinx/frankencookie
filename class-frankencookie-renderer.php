@@ -65,49 +65,67 @@ class FrankenCookie_Renderer {
 
 		$current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
+		$has_cookie = FrankenCookie::has_cookie();
+
 		$output = '';
-		$show = !FrankenCookie::has_cookie();
 
-		if ( $show ) {
+		global $frankencookie_did_script;
 
-			global $frankencookie_did_script;
+		if ( !isset( $frankencookie_did_script ) ) {
 
-			if ( !isset( $frankencookie_did_script ) ) {
+			$frankencookie_did_script = true;
 
-				$frankencookie_did_script = true;
+			$output .= sprintf(
+				'<div id="frankencookie-container" class="frankencookie-container %s %s">',
+				esc_attr( $class ),
+				$has_cookie ? 'has-cookie' : 'has-not-cookie'
+			);
 
-				$output .= sprintf( '<div id="frankencookie-container" class="frankencookie-container %s">', esc_attr( $class ) );
-				$output = '<div class="frankencookie-message">';
-				$output .= wp_kses_post( $text );
-				$output .=  '</div>';
-				$output .= '<div class="frankencookie-hide">';
-				$output .= sprintf(
-					'<a href="%s" rel="nofollow">%s</a>',
-					esc_url( wp_nonce_url( add_query_arg( 'frankencookie', 'set', remove_query_arg( 'frankencookie', $current_url ) ), 'frankencookie' ) ),
-					wp_kses_post( $hide )
-				);
-				$output .= '<noscript>';
-				$output .= esc_html__( 'You have disabled Javascript, to hide this notice, Javascript must be enabled.', 'frankencookie' );
-				$output .= '</noscript>';
-				$output .= '</div>';
-				$output .= '</div>'; // .frankencookie-container
-	
-				// Using Javascript to hide the message to avoid caching issues:
-				// With caching, the widget would be rendered for a visitor and after
-				// the visitor clicks the 'hide' link, the message would still appear.
+			$output .= '<div class="frankencookie-message">';
+			$output .= wp_kses_post( $text );
+			$output .=  '</div>';
+
+			$output .= '<div class="frankencookie-hide">';
+			$output .= sprintf(
+				'<a href="%s" rel="nofollow">%s</a>',
+				esc_url( wp_nonce_url( add_query_arg( 'frankencookie', 'set', remove_query_arg( 'frankencookie', $current_url ) ), 'frankencookie' ) ),
+				wp_kses_post( $hide )
+			);
+			$output .= '<noscript>';
+			$output .= esc_html__( 'You have disabled Javascript, to hide this notice, Javascript must be enabled.', 'frankencookie' );
+			$output .= '</noscript>';
+			$output .= '</div>';
+
+			$output .= '</div>'; // .frankencookie-container
+
+			// Apply display:none directly to the container if the cookie is set.
+			if ( apply_filters( 'frankencookie_print_inline_style', true ) ) {
+				$output .= '<style>';
+				$output .= '.frankencookie-container.has-cookie {';
+				$output .= 'display: none;';
+				$output .= '}';
+				$output .= '</style>';
+			}
+
+			// Using Javascript to hide the message to avoid caching issues:
+			// With caching, the widget would be rendered for a visitor and after
+			// the visitor clicks the 'hide' link, the message would still appear.
+			if ( apply_filters( 'frankencookie_print_inline_script', true ) ) {
 				$output .= '<script type="text/javascript">';
 				$output .= 'if (document.cookie.indexOf("frankencookie") >= 0 ) {';
 				$output .= 'let frankencookie_container = document.getElementById( "frankencookie-container" );';
 				$output .= 'if ( typeof frankencookie_container !== "undefined" ) {';
+				$output .= 'if ( frankencookie_container.style.display !== "none" ) {';
 				$output .= 'frankencookie_container.style.display = "none";';
+				$output .= '}';
 				$output .= '}';
 				$output .= '}';
 				$output .= '</script>';
 			}
+
+			$output = apply_filters( 'frankencookie_render', $output );
 		}
 
 		return $output;
 	}
 }
-
-FrankenCookie_Shortcode::init();
