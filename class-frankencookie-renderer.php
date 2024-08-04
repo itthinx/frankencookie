@@ -105,7 +105,7 @@ class FrankenCookie_Renderer {
 			$output .= '</div>'; // .frankencookie-container
 
 			// Apply display:none directly to the container if the cookie is set.
-			if ( apply_filters( 'frankencookie_print_inline_style', true ) ) {
+			if ( apply_filters( 'frankencookie_print_inline_style', false ) ) {
 				$output .= '<style>';
 				$output .= '.frankencookie-container.has-cookie {';
 				$output .= 'display: none;';
