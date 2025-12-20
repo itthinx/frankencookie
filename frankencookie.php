@@ -2,7 +2,7 @@
 /**
  * frankencookie.php
  *
- * Copyright (c) 2013 - 2024 "kento" Karim Rahimpur www.itthinx.com
+ * Copyright (c) 2013 - 2025 "kento" Karim Rahimpur www.itthinx.com
  *
  * This code is released under the GNU General Public License.
  * See COPYRIGHT.txt and LICENSE.txt.
@@ -22,7 +22,7 @@
  * Plugin URI: https://www.itthinx.com/plugins/frankencookie
  * Description: FrankenCookie reminds visitors of the use of cookies.
  * Version: 2.1.0
- * Requires at least: 6.0
+ * Requires at least: 6.5
  * Requires PHP: 7.4
  * Author: itthinx
  * Author URI: https://www.itthinx.com

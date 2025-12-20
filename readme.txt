@@ -2,7 +2,7 @@
 Contributors: itthinx
 Donate link: https://www.itthinx.com/shop/
 Tags: cookie, cookie law, bureaucracy, compliance, cookie directive
-Requires at least: 6.0
+Requires at least: 6.5
 Tested up to: 6.9
 Requires PHP: 7.4
 Stable tag: 2.1.0
