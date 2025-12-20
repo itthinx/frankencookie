@@ -21,7 +21,7 @@
  * Plugin Name: FrankenCookie
  * Plugin URI: https://www.itthinx.com/plugins/frankencookie
  * Description: FrankenCookie reminds visitors of the use of cookies.
- * Version: 2.0.0
+ * Version: 2.1.0
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * Author: itthinx
@@ -35,7 +35,7 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FCOOK_CORE_VERSION',  '2.0.0' );
+define( 'FCOOK_CORE_VERSION', '2.1.0' );
 define( 'FCOOK_FILE',          __FILE__ );
 define( 'FCOOK_DIR',           untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 define( 'FCOOK_CORE_URL',      plugins_url( '/frankencookie' ) );
