@@ -1,5 +1,9 @@
 == Frankencookie by itthinx - changelog.txt ==
 
+= 2.1.0 =
+* WordPress 6.9 compatible.
+* Requires at least WordPress 6.5.
+
 = 2.0.0 =
 * WordPress 6.6 compatible.
 * Requires at least WordPress 6.0.

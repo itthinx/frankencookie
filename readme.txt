@@ -2,10 +2,10 @@
 Contributors: itthinx
 Donate link: https://www.itthinx.com/shop/
 Tags: cookie, cookie law, bureaucracy, compliance, cookie directive
-Requires at least: 6.0
-Tested up to: 6.6
+Requires at least: 6.5
+Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.0.0
+Stable tag: 2.1.0
 License: GPLv3
 
 FrankenCookie reminds visitors of the use of cookies.
